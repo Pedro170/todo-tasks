@@ -11,30 +11,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TodoEntity = void 0;
 const typeorm_1 = require("typeorm");
+const decorators_1 = require("@nestjs/swagger/dist/decorators");
 let TodoEntity = class TodoEntity {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
+    (0, decorators_1.ApiProperty)(),
     __metadata("design:type", String)
 ], TodoEntity.prototype, "CD_ID", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'NM_TASK' }),
+    (0, decorators_1.ApiProperty)(),
     __metadata("design:type", String)
 ], TodoEntity.prototype, "task", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'NR_IS_DONE', type: 'tinyint', width: 1 }),
+    (0, decorators_1.ApiProperty)(),
     __metadata("design:type", Number)
 ], TodoEntity.prototype, "isDone", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ name: 'DT_CREATE_AT' }),
+    (0, decorators_1.ApiProperty)(),
     __metadata("design:type", String)
 ], TodoEntity.prototype, "createdAt", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)({ name: 'DT_UPDATE_AT' }),
+    (0, decorators_1.ApiProperty)(),
     __metadata("design:type", String)
 ], TodoEntity.prototype, "updatedAt", void 0);
 __decorate([
     (0, typeorm_1.DeleteDateColumn)({ name: 'DT_DELETED_AT' }),
+    (0, decorators_1.ApiProperty)(),
     __metadata("design:type", String)
 ], TodoEntity.prototype, "deletedAt", void 0);
 TodoEntity = __decorate([
