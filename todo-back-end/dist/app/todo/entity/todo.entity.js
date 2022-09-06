@@ -13,6 +13,14 @@ exports.TodoEntity = void 0;
 const typeorm_1 = require("typeorm");
 const decorators_1 = require("@nestjs/swagger/dist/decorators");
 let TodoEntity = class TodoEntity {
+    constructor(todo) {
+        this.CD_ID = todo === null || todo === void 0 ? void 0 : todo.CD_ID;
+        this.task = todo === null || todo === void 0 ? void 0 : todo.task;
+        this.isDone = todo === null || todo === void 0 ? void 0 : todo.isDone;
+        this.createdAt = todo === null || todo === void 0 ? void 0 : todo.createdAt;
+        this.updatedAt = todo === null || todo === void 0 ? void 0 : todo.updatedAt;
+        this.deletedAt = todo === null || todo === void 0 ? void 0 : todo.deletedAt;
+    }
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
@@ -45,7 +53,8 @@ __decorate([
     __metadata("design:type", String)
 ], TodoEntity.prototype, "deletedAt", void 0);
 TodoEntity = __decorate([
-    (0, typeorm_1.Entity)({ name: 'TB_TODOS' })
+    (0, typeorm_1.Entity)({ name: 'TB_TODOS' }),
+    __metadata("design:paramtypes", [Object])
 ], TodoEntity);
 exports.TodoEntity = TodoEntity;
 //# sourceMappingURL=todo.entity.js.map
