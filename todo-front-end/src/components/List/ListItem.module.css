@@ -1,0 +1,7 @@
+.item {
+  width: 100%;
+  border-radius: .4rem;
+  background: var( --type-first );
+  color: #fff;
+  padding: 1rem;
+}

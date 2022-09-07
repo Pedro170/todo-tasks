@@ -1,0 +1,21 @@
+.home {
+  display: flex;
+  column-gap: 2rem;
+  width: 100%;
+  height: calc( 100vh - 70px );
+  margin-top: 70px;
+  padding: 2rem;
+}
+
+.tarefas {
+  flex: 2;
+  border-radius: .5rem;
+  background: var( --type-second );
+  padding: 1rem;
+  overflow: auto;
+}
+
+.time {
+  flex: 1;
+  padding: 1rem;
+}

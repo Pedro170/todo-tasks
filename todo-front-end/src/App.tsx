@@ -1,10 +1,11 @@
 import './App.css';
+import Router from 'routes';
 
 const App = () => {
   return (
-    <div className="App">
-      <h1>Obrigado Deus</h1>
-    </div>
+    <main className="main">
+      <Router />
+    </main>
   );
 }
 
