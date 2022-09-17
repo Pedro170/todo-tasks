@@ -1,31 +1,43 @@
 .containerTimes {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
+  row-gap: 1rem;
   width: 100%;
   height: 200px;
   border-radius: .3rem;
   background: var( --type-first );
-  padding: 1rem;
+  padding: .5rem;
 }
 
 .containerTimes span {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
-  height: 50px;
+  width: 90%;
+  height: 80px;
   border-radius: .3rem;
   background: var( --type-second );
   color: #fff;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
-.containerTimes b {
+.containerTimes p {
+  width: 90%;
+  border-radius: .3rem;
+  background: var( --type-second );
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+/* .containerTimes b {
   color: #fff;
   font-size: 2rem;
   margin: 0 .5rem;
-}
+} */
 
 .buttonStart {
   width: 100%;
