@@ -4,21 +4,25 @@ import Header from 'components/Header/Header'
 import ListBox from 'components/List/ListBox'
 import styles from './Home.module.css'
 import Times from 'components/Times/Times'
+import useTodo from 'hooks/useTodo'
 
 const Home = () => {
   const [ taskName, setTaskName ] = React.useState('');
-  const [ tasks, setTasks ] = React.useState<{ label: string }[]>( [] );
+  const { tasks, getAll, createTodo } = useTodo();
+  const [ taskIndex, setTaskIndex ] = React.useState( 0 )
 
-  const handleKeyUp = ( event: React.KeyboardEvent ) => {
+
+  const handleKeyUp = React.useCallback( async ( event: React.KeyboardEvent ) => {
     if( (event.code === 'Enter' || event.code === 'NumpadEnter') && taskName !== '' ) {
-      setTasks(( prev ) => {
-        const _tasks =  [...prev ];
-        _tasks.push({ label: taskName });
-        return _tasks;
-      })
+      await createTodo({ task: taskName, isDone: 0 });
+      await getAll();
       setTaskName('');
     }
-  }
+  }, [ createTodo, getAll, taskName ])
+
+  React.useEffect(() => {
+    getAll();
+  }, [ getAll ]);
 
   return (
     <>
@@ -33,11 +37,11 @@ const Home = () => {
             onKeyUp={ handleKeyUp }
             placeholder="Adicione uma nova tarefa"
           />
-          <ListBox items={ tasks }/>
+          <ListBox items={ tasks } selectedIndex={ taskIndex } onClick={ setTaskIndex } />
         </div>
 
         <div className={`${ styles.tarefas } ${ styles.time }`}>
-          <Times />
+          <Times tasks={ tasks } taskIndex={ taskIndex } />
         </div>
       </section>
     </>

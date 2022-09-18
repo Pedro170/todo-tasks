@@ -1,15 +1,18 @@
-import ListItem, { ListItemProps } from "./ListItem";
+import ListItem from "./ListItem";
 import styles from "./ListBox.module.css";
+import { ITodo } from "model/ITodo";
 
 type ListProps = {
-  items: ListItemProps[];
+  items: ITodo[];
+  selectedIndex: number;
+  onClick: ( index: number ) => void;
 };
 
-const ListBox = ({ items }: ListProps) => {
+const ListBox = ({ items, selectedIndex, onClick }: ListProps) => {
   return (
     <section className={ styles.section }>
-      { items.map(( item, idx ) => (
-          <ListItem key={ idx } { ...item } />
+      { items.map(( item, index ) => (
+          <ListItem key={ index } isActive={ index === selectedIndex } { ...item } index={ index } onClick={ onClick } />
       )) }
     </section>
   );

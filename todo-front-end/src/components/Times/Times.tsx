@@ -1,12 +1,22 @@
 import React from 'react'
 import Icon from 'components/Icon/Icon'
 import styles from './Times.module.css'
+import useTodo from 'hooks/useTodo';
+import { ITodo } from 'model/ITodo';
 
-const SECONDS_DEFAULT = 1500;
-const Times = () => {
+const SECONDS_DEFAULT = 5;
+
+type Props = {
+  tasks: ITodo[];
+  taskIndex: number;
+}
+
+const Times = ({ tasks, taskIndex }: Props) => {
   const [seconds, setSeconds] = React.useState(SECONDS_DEFAULT);
   const [timer, setTimer] = React.useState<any>();
   const [stage, setStage] = React.useState('ready');
+
+  const { updateTodo, getAll } = useTodo();
 
   const secondsToTime = (secs: number) => {
     const divisorMinutes = secs % 3600;
@@ -73,6 +83,15 @@ const Times = () => {
     }
   }, [ stage ])
 
+  const handleDoneButton = React.useCallback( async () => {
+    const task = tasks[ taskIndex ];
+    if( task ) {
+      await updateTodo( task.CD_ID, { ...task, isDone: 1 } );
+      console.log(task)
+      getAll();
+    }
+  }, [ taskIndex, tasks, updateTodo, getAll ])
+
   return (
     <section>
       <div className={ styles.containerTimes } >
@@ -101,7 +120,7 @@ const Times = () => {
           <Icon variant='restart' />
         </button>
 
-        <button>
+        <button onClick={ handleDoneButton }>
           <Icon variant='done' />
         </button>
       </div>
